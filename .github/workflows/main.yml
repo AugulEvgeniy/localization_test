@@ -47,17 +47,21 @@ jobs:
       - name: Process language code
         id: language
         run: |
-          LANGUAGE_CODE=$(git log -1 --pretty=format:"%s" | grep -oP '\[([a-z]{2}(-[a-z]{2})?)\]' | head -1 | tr -d '[]')
+          # Extract language code from LAST commit message
+          FULL_MESSAGE=$(git log -1 --pretty=format:"%s")
+          echo "Full commit message: $FULL_MESSAGE"
+            
+          # Extract the first [lang-code] pattern found
+          LANGUAGE_CODE=$(echo "$FULL_MESSAGE" | grep -oP '\[([a-z]{2}(-[a-z]{2})?\]' | head -1 | tr -d '[]')
+            
           if [ -z "$LANGUAGE_CODE" ]; then
-            echo "::error::Commit message must contain [lang-code] (e.g., [pt-br])"
+            echo "::error::No valid language code found in commit message (e.g., [pt-br])"
+            echo "Found message: $FULL_MESSAGE"
             exit 1
           fi
+            
+          echo "Extracted language: $LANGUAGE_CODE"
           echo "language_code=$LANGUAGE_CODE" >> $GITHUB_OUTPUT
-
-          TEST_FILE=$(find e2e -name 'translation*.cyjs' | head -1)
-          if [ -f "$TEST_FILE" ]; then
-            mv "$TEST_FILE" "e2e/translation[$LANGUAGE_CODE].cy.js"
-          fi
 
       - name: Run translation tests
         uses: cypress-io/github-action@v6
