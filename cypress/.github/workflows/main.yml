@@ -1,7 +1,7 @@
 name: Translation Pipeline
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'fixtures/GoldenGoals_Translation_*.xlsx' # Trigger when translation files change
 
