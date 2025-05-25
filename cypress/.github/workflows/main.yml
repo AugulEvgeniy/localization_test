@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master ]
     paths:
-      - 'fixtures/GoldenGoals_Translations*.xlsx' # Trigger when translation files change
+      - 'fixtures/GoldenGoals_Translations1.xlsx' # Trigger when translation files change
 
 jobs:
   translation-process:
