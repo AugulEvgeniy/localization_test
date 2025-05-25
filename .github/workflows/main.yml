@@ -67,7 +67,7 @@ jobs:
       - name: Rename test file for extracted language code
         run: |
           echo "Renaming test file to match language code..."
-          mv cypress/e2e/translation[it].cy.js cypress/e2e/translation[${{ steps.language.outputs.language_code }}].cy.js    
+          mv cypress/e2e/translation_it.cy.js cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js 
 
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
@@ -80,7 +80,7 @@ jobs:
         with:
           browser: chrome
           headless: true
-          spec: "cypress/e2e/translation[${{ steps.language.outputs.language_code }}].cy.js"
+          spec: "cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
 
       - name: Generate HTML report
         if: always()
