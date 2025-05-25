@@ -1,7 +1,6 @@
 name: Translation Pipeline
 on:
-  push:
-    branches: [ master ]
+  push
 
 jobs:
   translation-process:
