@@ -112,11 +112,23 @@ jobs:
       - name: Generate HTML report
         if: always()
         run: |
+          # 1. Ensure report directory exists
+          mkdir -p cypress/reports/html
+            
+          # 2. Generate merged report
           npx mochawesome-merge cypress/reports/mocha/*.json > merged-report.json
-          npx marge merged-report.json --reportDir cypress/reports/html
-
+            
+          # 3. Generate HTML report with explicit output path
+          npx marge merged-report.json \
+            --reportDir cypress/reports/html \
+            --reportFilename index.html
+            
+          # 4. Verify report creation
+          ls -la cypress/reports/html/
+        
       - name: Upload HTML report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: translation-report-${{ steps.language.outputs.language_code }}
-          path: cypress/reports/html/merged-report.html
+          path: cypress/reports/html/index.html  # Explicit path to the HTML file
