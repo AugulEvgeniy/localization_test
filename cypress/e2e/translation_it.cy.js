@@ -1,7 +1,7 @@
 let specFilename = Cypress.spec.name;
 
 // Match language code from format like 'translation-pt-br.cy.js'
-const languageCode = specFilename.match(/translation_(.*)\.cy\.js/)[1];
+const languageCode = specFilename.match(/translation_(.*)\.cy\.js/)[1]
 
 // Store for later use in the test
 const currentLanguage = languageCode; // e.g., "pt-br"
