@@ -1,9 +1,17 @@
 name: Translation Pipeline
 
-on: push
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'cypress/fixtures/**'
+      - 'cypress/e2e/translation_*.cy.js'
+
 
 jobs:
   translation-process:
+    # Only trigger when commit message contains "translation"
+    if: contains(github.event.head_commit.message, 'translation')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
