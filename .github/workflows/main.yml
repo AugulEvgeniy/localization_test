@@ -10,8 +10,7 @@ on:
 
 jobs:
   translation-process:
-    # Only trigger when commit message contains "translation"
-    if: contains(github.event.head_commit.message, 'translation')
+    if: contains(github.event.head_commit.message, 'localization') || contains(github.event.head_commit.message, 'localisation')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
