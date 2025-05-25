@@ -19,20 +19,26 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Generate translation JSON
+      - name: Generate and commit translations
         run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in cypress/fixtures/:"
+          # 1. Generate JSON
+          echo "Running conversion script..."
+          node cypress/fixtures/convertExcel.js
+          
+          # 2. Verify output
+          echo "Generated files:"
           ls -la cypress/fixtures/
           
-          node cypress/fixtures/convertExcel.js
-
-      - name: Commit translation JSON
-        run: |
+          if [ ! -f "cypress/fixtures/full_translation.json" ]; then
+            echo "::error::Failed to generate full_translation.json"
+            exit 1
+          fi
+          
+          # 3. Commit changes
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add cypress/fixtures/full_translation.json
-          git commit -m "Auto-generated translation JSON"
+          git commit -m "Auto-generated translation JSON [skip ci]"
           git push
 
       - name: Process language code
