@@ -117,7 +117,7 @@ describe('Progress bar translations', () => {
           .replace(/\s+/g, ' ')     // collapse multiple spaces
           .trim();
         
-        const expectedWords = expectedCleaned.split(' ')
+        const expectedWords = expectedCleaned.split(' ');
         
         cy.window().then((win) => {
           const actualRaw = win.game.scene.scenes[2].progressBar.list[panelIndex].text;
