@@ -24,35 +24,25 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 1. Generate JSON
-          echo "Running conversion script..."
           node cypress/fixtures/convertExcel.js
           
-          # 2. Verify output
-          echo "Generated files:"
-          ls -la cypress/fixtures/
+          # 2. Handle both filename possibilities
+          if [ -f "cypress/fixtures/full_translations.json" ]; then
+            mv cypress/fixtures/full_translations.json cypress/fixtures/full_translation.json
+          fi
           
+          # 3. Verify file exists
           if [ ! -f "cypress/fixtures/full_translation.json" ]; then
-            echo "::error::Failed to generate full_translation.json"
+            echo "::error::Translation JSON not generated"
             exit 1
           fi
           
-          # 3. Commit changes (handles both new and existing file)
+          # 4. Commit changes
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          
-          # Check if file exists in repo
-          if git ls-files --error-unmatch cypress/fixtures/full_translation.json >/dev/null 2>&1; then
-            echo "File exists in repo - updating..."
-            git add cypress/fixtures/full_translation.json
-            git commit -m "Update translation JSON for ${{ steps.language.outputs.language_code }} [skip ci]"
-          else
-            echo "File not in repo - adding new..."
-            git add cypress/fixtures/full_translation.json
-            git commit -m "Add initial translation JSON for ${{ steps.language.outputs.language_code }} [skip ci]"
-          fi
-          
-          # 4. Push changes
-          git pull --rebase origin master # Ensure we're up to date
+          git add cypress/fixtures/full_translation.json
+          git commit -m "Updated translations for ${{ steps.language.outputs.language_code }} [skip ci]"
+          git pull --rebase origin master
           git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
 
       - name: Process language code
