@@ -21,7 +21,6 @@ jobs:
 
       - name: Generate and commit translations
         env:
-        # Use the default GITHUB_TOKEN with write permissions
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 1. Generate JSON
@@ -42,7 +41,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git add cypress/fixtures/full_translation.json
           git commit -m "Auto-generated translation JSON [skip ci]"
-          git push
+          git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git"
 
       - name: Process language code
         id: language
@@ -65,22 +64,47 @@ jobs:
           echo "language_code=$LANGUAGE_CODE" >> $GITHUB_OUTPUT
 
       - name: Rename test file for extracted language code
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Renaming test file to match language code..."
-          mv cypress/e2e/translation[it].cy.js cypress/e2e/translation[${{ steps.language.outputs.language_code }}].cy.js    
-
+          echo "Current test files:"
+          ls -la cypress/e2e/
+          
+          # Find and rename the test file (using hyphen instead of brackets)
+          OLD_FILE=$(find cypress/e2e -name 'translation*.cy.js' | head -1)
+          if [ -z "$OLD_FILE" ]; then
+            echo "::error::No translation test file found in cypress/e2e/"
+            exit 1
+          fi
+          
+          NEW_FILE="cypress/e2e/translation-${LANGUAGE_CODE}.cy.js"
+          echo "Renaming $OLD_FILE to $NEW_FILE"
+          mv -f "$OLD_FILE" "$NEW_FILE"
+          
+          # Commit the renamed file
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add cypress/e2e/translation[${{ steps.language.outputs.language_code }}].cy.js    
-          git commit -m "Auto-generated translation JSON [skip ci]"
-          git push
+          git add "$NEW_FILE"
+          git commit -m "Renamed test file for ${LANGUAGE_CODE} [skip ci]"
+          git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+
+      - name: Verify test file exists
+        run: |
+          TEST_FILE="cypress/e2e/translation-${LANGUAGE_CODE}.cy.js"
+          if [ ! -f "$TEST_FILE" ]; then
+            echo "::error::Test file not found: $TEST_FILE"
+            ls -la cypress/e2e/
+            exit 1
+          fi
+          echo "Found test file: $TEST_FILE"
 
       - name: Run translation tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           headless: true
-          spec: "cypress/e2e/translation[${{ steps.language.outputs.language_code }}].cy.js"
+          spec: "cypress/e2e/translation-${LANGUAGE_CODE}.cy.js"
+          config-file: cypress.config.js
 
       - name: Generate HTML report
         if: always()
