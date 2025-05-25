@@ -74,30 +74,32 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 1. Find and rename the existing file
-          OLD_FILE="cypress/e2e/translation_*.cy.js"
-          NEW_FILE="cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
+          # 1. Find the existing translation file (matches any language code)
+          OLD_FILE=$(find cypress/e2e -name 'translation_*.cy.js' | head -n 1)
             
-          if [ ! -f "$OLD_FILE" ]; then
-            echo "::error::Original test file not found: $OLD_FILE"
+          if [ -z "$OLD_FILE" ]; then
+            echo "::error::No translation test file found in cypress/e2e/"
             ls -la cypress/e2e/
             exit 1
           fi
             
-          # 2. Perform the rename (this removes the old file)
-          mv "$OLD_FILE" "$NEW_FILE"
-          echo "Renamed $OLD_FILE to $NEW_FILE"
+          # 2. Set new filename with extracted language code
+          NEW_FILE="cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
+          echo "Renaming $OLD_FILE to $NEW_FILE"
             
-          # 3. Set up Git
+          # 3. Perform the rename
+          mv -f "$OLD_FILE" "$NEW_FILE"
+            
+          # 4. Configure Git
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
             
-          # 4. Stage both the deletion and addition
+          # 5. Stage changes (handles both rename and new file cases)
           git add "$OLD_FILE" "$NEW_FILE"
             
-          # 5. Commit and push
-          git commit -m "Renamed test file to ${{ steps.language.outputs.language_code }} [skip ci]"
-          git pull --rebase origin master # Ensure we're up to date
+          # 6. Commit and push
+          git commit -m "Renamed translation file to ${{ steps.language.outputs.language_code }} [skip ci]"
+          git pull --rebase origin master
           git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
 
       - name: Run translation tests
