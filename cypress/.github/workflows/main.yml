@@ -3,7 +3,8 @@ on:
   push:
     branches: [ master ]
     paths:
-      - 'fixtures/GoldenGoals_Translations.xlsx' # Trigger when translation files change
+      - 'cypress/fixtures/**' # Trigger when translation files change
+      - 'e2e/translation*cy.js'
 
 jobs:
   translation-process:
