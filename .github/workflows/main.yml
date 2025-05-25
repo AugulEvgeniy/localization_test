@@ -51,35 +51,35 @@ jobs:
             git push
           fi
 
-      - name: Process language code
-        id: language
+      - name: Rename test file
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TRIGGER_MSG="${{ github.event.head_commit.message }}"
-          echo "Analyzing triggering commit: $TRIGGER_MSG"
+          # 1. Find and rename the existing file
+          OLD_FILE="cypress/e2e/translation_it.cy.js"
+          NEW_FILE="cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
             
-          # Accept both [xx] and [xx-xx] formats
-          LANGUAGE_CODE=$(echo "$TRIGGER_MSG" | grep -oE '\[([a-z]{2})(-[a-z]{2})?\]' | head -1 | tr -d '[]')
-            
-          # Validate at least 2-letter code exists
-          if [[ ! $LANGUAGE_CODE =~ ^[a-z]{2}(-[a-z]{2})?$ ]]; then
-            echo "::error::Commit message must contain [lang-code] (e.g., [tr] or [pt-br])"
-            echo "Triggering commit was: $TRIGGER_MSG"
+          if [ ! -f "$OLD_FILE" ]; then
+            echo "::error::Original test file not found: $OLD_FILE"
+            ls -la cypress/e2e/
             exit 1
           fi
             
-          echo "Using language code: $LANGUAGE_CODE"
-          echo "language_code=$LANGUAGE_CODE" >> $GITHUB_OUTPUT
-
-      - name: Rename test file for extracted language code
-        run: |
-          echo "Renaming test file to match language code..."
-          mv cypress/e2e/translation_it.cy.js cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js 
-
+          # 2. Perform the rename (this removes the old file)
+          mv "$OLD_FILE" "$NEW_FILE"
+          echo "Renamed $OLD_FILE to $NEW_FILE"
+            
+          # 3. Set up Git
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js    
-          git commit -m "Auto-generated translation JSON [skip ci]"
-          git push
+            
+          # 4. Stage both the deletion and addition
+          git add "$OLD_FILE" "$NEW_FILE"
+            
+          # 5. Commit and push
+          git commit -m "Renamed test file to ${{ steps.language.outputs.language_code }} [skip ci]"
+          git pull --rebase origin master # Ensure we're up to date
+          git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
 
       - name: Run translation tests
         uses: cypress-io/github-action@v6
