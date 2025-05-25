@@ -25,7 +25,7 @@ jobs:
           echo "Files in cypress/fixtures/:"
           ls -la cypress/fixtures/
           
-          node test/cypress/fixtures/convertExcel.js
+          node cypress/fixtures/convertExcel.js
 
       - name: Commit translation JSON
         run: |
