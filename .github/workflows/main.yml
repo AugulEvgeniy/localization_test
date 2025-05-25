@@ -21,8 +21,17 @@ jobs:
 
       - name: Generate translation JSON
         run: |
-          node fixtures/convertExcel.js
+          echo "Current directory: $(pwd)"
+          echo "Files in fixtures/:"
           ls -la fixtures/
+          
+          # Verify file exists
+          if [ ! -f "fixtures/convertExcel.js" ]; then
+            echo "::error::convertExcel.js not found!"
+            exit 1
+          fi
+          
+          node fixtures/convertExcel.js
 
       - name: Commit translation JSON
         run: |
