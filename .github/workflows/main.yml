@@ -24,26 +24,32 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 1. Generate JSON
+          echo "Running conversion script..."
           node cypress/fixtures/convertExcel.js
-          
-          # 2. Handle both filename possibilities
-          if [ -f "cypress/fixtures/full_translations.json" ]; then
-            mv cypress/fixtures/full_translations.json cypress/fixtures/full_translation.json
-          fi
-          
-          # 3. Verify file exists
+      
+          # 2. Verify output
+          echo "Generated files:"
+          ls -la cypress/fixtures/
+      
           if [ ! -f "cypress/fixtures/full_translation.json" ]; then
-            echo "::error::Translation JSON not generated"
+            echo "::error::Failed to generate full_translation.json"
             exit 1
           fi
-          
-          # 4. Commit changes
+      
+          # 3. Commit changes (only if file content actually changed)
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add cypress/fixtures/full_translation.json
-          git commit -m "Updated translations for ${{ steps.language.outputs.language_code }} [skip ci]"
-          git pull --rebase origin master
-          git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
+      
+          git add -u cypress/fixtures/full_translation.json   # stage if already tracked
+          git add cypress/fixtures/full_translation.json      # stage if new/untracked
+      
+          # Check if there are staged changes before committing
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-generated translation JSON [skip ci]"
+            git push
+          fi
 
       - name: Process language code
         id: language
