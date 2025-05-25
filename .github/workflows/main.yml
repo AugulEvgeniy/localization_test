@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           echo "Files in test/cypress/fixtures/:"
-          ls -la test/cypress/fixtures/
+          ls -la test/cypress/fixtures/convertExcel.js
           
           node test/cypress/fixtures/convertExcel.js
 
