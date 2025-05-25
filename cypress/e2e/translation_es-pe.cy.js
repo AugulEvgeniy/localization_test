@@ -26,10 +26,10 @@ describe('League translations', () => {
         );
 
         if (!leagueTranslation) {
-          throw new Error(`Translation not found for ${leagueKey} in ${lang}`)
+          throw new Error(`Translation not found for ${leagueKey} in ${currentLanguage}`)
         };
 
-        const expectedRaw = leagueTranslation[lang]
+        const expectedRaw = leagueTranslation[currentLanguage]
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
@@ -106,10 +106,10 @@ describe('Progress bar translations', () => {
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${lang}`);
+          throw new Error(`Translation not found for ${progressKey} in ${currentLanguage}`);
         }
 
-        const expectedRaw = progressTranslation[lang];
+        const expectedRaw = progressTranslation[currentLanguage];
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
@@ -177,10 +177,10 @@ describe('Stake translations', () => {
         );
 
         if (!Translation) {
-          throw new Error(`Translation not found for ${Key} in ${lang}`);
+          throw new Error(`Translation not found for ${Key} in ${currentLanguage}`);
         }
 
-        const expectedRaw = Translation[lang];
+        const expectedRaw = Translation[currentLanguage];
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
@@ -240,10 +240,10 @@ describe('Footer translations', () => {
         );
 
         if (!Translation) {
-          throw new Error(`Translation not found for ${Key} in ${lang}`);
+          throw new Error(`Translation not found for ${Key} in ${currentLanguage}`);
         }
 
-        const expectedRaw = Translation[lang];
+        const expectedRaw = Translation[currentLanguage];
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
@@ -298,10 +298,10 @@ describe('Footer translations', () => {
         );
 
         if (!TranslationButton) {
-          throw new Error(`Translation not found for ${Key} in ${lang}`);
+          throw new Error(`Translation not found for ${Key} in ${currentLanguage}`);
         }
 
-        const expectedButtonRaw = TranslationButton[lang];
+        const expectedButtonRaw = TranslationButton[currentLanguage];
         
         // Clean up expected translation
           const expectedButtonCleaned = expectedButtonRaw
@@ -364,10 +364,10 @@ describe('Top panel translations', () => {
         );
 
         if (!Translation) {
-          throw new Error(`Translation not found for ${Key} in ${lang}`);
+          throw new Error(`Translation not found for ${Key} in ${currentLanguage}`);
         }
 
-        const expectedRaw = Translation[lang];
+        const expectedRaw = Translation[currentLanguage];
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
@@ -429,10 +429,10 @@ describe('Help page: total goals translations', () => {
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${lang}`);
+          throw new Error(`Translation not found for ${progressKey} in ${currentLanguage}`);
         }
 
-        const expectedRaw = progressTranslation[lang];
+        const expectedRaw = progressTranslation[currentLanguage];
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
@@ -499,10 +499,10 @@ describe('Help page: total goals translations', () => {
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${lang}`);
+          throw new Error(`Translation not found for ${progressKey} in ${currentLanguage}`);
         }
 
-        const expectedRaw = progressTranslation[lang];
+        const expectedRaw = progressTranslation[currentLanguage];
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
@@ -566,10 +566,10 @@ describe('Help page translations', () => {
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${lang}`);
+          throw new Error(`Translation not found for ${progressKey} in ${currentLanguage}`);
         }
 
-        const expectedRaw = progressTranslation[lang];
+        const expectedRaw = progressTranslation[currentLanguage];
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
