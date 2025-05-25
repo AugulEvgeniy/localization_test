@@ -1,10 +1,10 @@
 let specFilename = Cypress.spec.name;
 
-// Extract content between square brackets using regex
-const languageCode = specFilename.match(/\[(.*?)\]/)[1]; 
+// Match language code from format like 'translation-pt-br.cy.js'
+const languageCode = specFilename.match(/translation_(.*)\.cy\.js/)[1];
 
 // Store for later use in the test
-const currentLanguage = languageCode; // "pt-br"
+const currentLanguage = languageCode; // e.g., "pt-br"
 
 describe('League translations', () => {
   it('should verify league button translations', () => {
