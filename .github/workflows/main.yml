@@ -22,8 +22,8 @@ jobs:
       - name: Generate translation JSON
         run: |
           echo "Current directory: $(pwd)"
-          echo "Files in test/cypress/fixtures/:"
-          ls -la test/cypress/fixtures/convertExcel.js
+          echo "Files in cypress/fixtures/:"
+          ls -la cypress/fixtures/
           
           node test/cypress/fixtures/convertExcel.js
 
