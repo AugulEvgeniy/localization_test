@@ -20,6 +20,9 @@ jobs:
         run: npm install
 
       - name: Generate and commit translations
+        env:
+        # Use the default GITHUB_TOKEN with write permissions
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 1. Generate JSON
           echo "Running conversion script..."
