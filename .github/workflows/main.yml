@@ -54,16 +54,15 @@ jobs:
       - name: Process language code
         id: language
         run: |
-          # Get the commit that triggered the workflow
           TRIGGER_MSG="${{ github.event.head_commit.message }}"
           echo "Analyzing triggering commit: $TRIGGER_MSG"
             
-          # Extract language code (format: [xx-xx])
-          LANGUAGE_CODE=$(echo "$TRIGGER_MSG" | grep -oE '\[[a-z]{2}-[a-z]{2}\]' | head -1 | tr -d '[]')
+          # Accept both [xx] and [xx-xx] formats
+          LANGUAGE_CODE=$(echo "$TRIGGER_MSG" | grep -oE '\[([a-z]{2})(-[a-z]{2})?\]' | head -1 | tr -d '[]')
             
-          # Validate extraction
-          if [[ ! $LANGUAGE_CODE =~ ^[a-z]{2}-[a-z]{2}$ ]]; then
-            echo "::error::Commit message must contain [lang-code] format (e.g., [pt-br])"
+          # Validate at least 2-letter code exists
+          if [[ ! $LANGUAGE_CODE =~ ^[a-z]{2}(-[a-z]{2})?$ ]]; then
+            echo "::error::Commit message must contain [lang-code] (e.g., [tr] or [pt-br])"
             echo "Triggering commit was: $TRIGGER_MSG"
             exit 1
           fi
