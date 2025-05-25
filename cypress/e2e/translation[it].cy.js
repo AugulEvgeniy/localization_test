@@ -66,7 +66,7 @@ describe('League translations', () => {
           
           expect(matchedWords.length).to.be.gte(2); // or adjust based on your threshold
         });
-      };
+      }
 
       // Verify England league button (panelIndex 1, listIndex 1)
       verify('ENGLAND_LEAGUE', 1, 1);
