@@ -1,0 +1,95 @@
+{
+  "state": "COMPLETE",
+  "game": {
+    "gameInstanceId": 999,
+    "stakePence": 1000,
+    "totalWinPence": 7000,
+    "goalsScored": 3,
+    "bonusWinMultiplier": 5,
+    "scratchList": [
+      "GOAL",
+      "MISS",
+      "BONUS",
+      "GOAL",
+      "MISS",
+      "GOAL"
+    ],
+    "videos": {
+      "videoHost": "https://abeta.olsworth.com/iwvideo/",
+      "sequence": [
+        {
+          "filename": "c42ed1c2-0799-4240-8a20-9c5e0ba833a8",
+          "externalGuid": "ita/vid-ita-I5rTqciFebWMKBo",
+          "goalTime": 4,
+          "length": 0,
+          "debugAs": "HOMEGOALRIGHT",
+          "actions": "GOAL,FREE KICK",
+          "attackingTeamCode": "GEN",
+          "attackingTeamAtHome": false,
+          "leftToRight": true,
+          "goalScored": true
+        },
+        {
+          "filename": "c324ffa3-e664-4fba-bf08-2e25be020d1a",
+          "externalGuid": "ita/vid-ita-oW1F8rzo0tMaif5",
+          "length": 10.36,
+          "debugAs": "HOMEGOALRIGHT",
+          "actions": "SAVE",
+          "attackingTeamCode": "ROM",
+          "attackingTeamAtHome": false,
+          "leftToRight": true,
+          "goalScored": false
+        },
+        null,
+        {
+          "filename": "718117c2-3fb5-40e5-be88-e47fb24f2e60",
+          "externalGuid": "ita/vid-ita-zTec1RbDjpXMlYE",
+          "goalTime": 7,
+          "length": 0,
+          "debugAs": "HOMEGOALRIGHT",
+          "actions": "GOAL",
+          "attackingTeamCode": "LAZ",
+          "attackingTeamAtHome": false,
+          "leftToRight": true,
+          "goalScored": true
+        },
+        {
+          "filename": "ca27c43a-fa26-4c62-9d7a-ec8aa7e0595c",
+          "externalGuid": "ita/vid-ita-J8NR8ikE644qKsR",
+          "length": 0,
+          "debugAs": "HOMEGOALRIGHT",
+          "actions": "SAVE",
+          "attackingTeamCode": "FIO",
+          "attackingTeamAtHome": false,
+          "leftToRight": false,
+          "goalScored": false
+        },
+        {
+          "filename": "08e3fe17-3acb-493f-bc9b-b47687cc6dc3",
+          "externalGuid": "ita/vid-ita-8UZX1TcoYyPyFrP",
+          "goalTime": 5,
+          "length": 0,
+          "debugAs": "HOMEGOALRIGHT",
+          "actions": "CORNER,GOAL",
+          "attackingTeamCode": "INT",
+          "attackingTeamAtHome": true,
+          "leftToRight": false,
+          "goalScored": true
+        }
+      ],
+      "videoSpecs": []
+    }
+  },
+  "wagerNumber": 995349,
+  "operationResult": 0,
+  "upstream": {
+    "txId": "995349",
+    "processedTxId": "MD4EB3yHIy",
+    "createdAt": "2025-04-16T20:49:02Z",
+    "balance": 1000,
+    "alreadyProcessed": false,
+    "status": 0,
+    "errDesc": null
+  },
+  "referenceGuid": "73fbb95b-c1d1-4d0f-92e8-41b045a5fe2d"
+}
