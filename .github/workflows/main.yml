@@ -47,20 +47,21 @@ jobs:
       - name: Process language code
         id: language
         run: |
-          # Extract language code from LAST commit message
-          FULL_MESSAGE=$(git log -1 --pretty=format:"%s")
-          echo "Full commit message: $FULL_MESSAGE"
+          # Get the commit that triggered the workflow
+          TRIGGER_MSG="${{ github.event.head_commit.message }}"
+          echo "Analyzing triggering commit: $TRIGGER_MSG"
             
-          # Extract the first [lang-code] pattern found
-          LANGUAGE_CODE=$(echo "$FULL_MESSAGE" | grep -oP '\[([a-z]{2}(-[a-z]{2})?\]' | head -1 | tr -d '[]')
+          # Extract language code (format: [xx-xx])
+          LANGUAGE_CODE=$(echo "$TRIGGER_MSG" | grep -oE '\[[a-z]{2}-[a-z]{2}\]' | head -1 | tr -d '[]')
             
-          if [ -z "$LANGUAGE_CODE" ]; then
-            echo "::error::No valid language code found in commit message (e.g., [pt-br])"
-            echo "Found message: $FULL_MESSAGE"
+          # Validate extraction
+          if [[ ! $LANGUAGE_CODE =~ ^[a-z]{2}-[a-z]{2}$ ]]; then
+            echo "::error::Commit message must contain [lang-code] format (e.g., [pt-br])"
+            echo "Triggering commit was: $TRIGGER_MSG"
             exit 1
           fi
             
-          echo "Extracted language: $LANGUAGE_CODE"
+          echo "Using language code: $LANGUAGE_CODE"
           echo "language_code=$LANGUAGE_CODE" >> $GITHUB_OUTPUT
 
       - name: Run translation tests
