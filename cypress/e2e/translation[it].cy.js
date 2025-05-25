@@ -29,7 +29,7 @@ describe('League translations', () => {
           throw new Error(`Translation not found for ${leagueKey} in ${lang}`);
         };
 
-        const expectedRaw = leagueTranslation[lang];
+        const expectedRaw = leagueTranslation[lang]
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
