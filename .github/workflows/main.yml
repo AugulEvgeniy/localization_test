@@ -121,7 +121,8 @@ jobs:
           # 3. Generate HTML report with explicit output path
           npx marge merged-report.json \
             --reportDir cypress/reports/html \
-            --reportFilename index.html
+            --reportFilename index.html \
+            --inline true
             
           # 4. Verify report creation
           ls -la cypress/reports/html/
