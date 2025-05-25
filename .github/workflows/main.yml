@@ -75,7 +75,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 1. Find and rename the existing file
-          OLD_FILE="cypress/e2e/translation_it.cy.js"
+          OLD_FILE="cypress/e2e/translation_*.cy.js"
           NEW_FILE="cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
             
           if [ ! -f "$OLD_FILE" ]; then
