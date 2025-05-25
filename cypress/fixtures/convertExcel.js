@@ -24,7 +24,7 @@ const translations = data.slice(1).map((row, index) => {
 });
 
 // Save the entire dataset to JSON
-fs.writeFileSync('full_translations.json', JSON.stringify(translations, null, 2), 'utf-8');
+fs.writeFileSync('full_translation.json', JSON.stringify(translations, null, 2), 'utf-8');
 console.log('✅ All rows successfully written to full_translations.json');
 
 const outputPath = 'cypress/fixtures/full_translation.json';
