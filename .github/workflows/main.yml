@@ -21,7 +21,6 @@ jobs:
 
       - name: Generate and commit translations
         env:
-        # Use the default GITHUB_TOKEN with write permissions
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 1. Generate JSON
@@ -37,12 +36,24 @@ jobs:
             exit 1
           fi
           
-          # 3. Commit changes
+          # 3. Commit changes (handles both new and existing file)
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add cypress/fixtures/full_translation.json
-          git commit -m "Auto-generated translation JSON [skip ci]"
-          git push
+          
+          # Check if file exists in repo
+          if git ls-files --error-unmatch cypress/fixtures/full_translation.json >/dev/null 2>&1; then
+            echo "File exists in repo - updating..."
+            git add cypress/fixtures/full_translation.json
+            git commit -m "Update translation JSON for ${{ steps.language.outputs.language_code }} [skip ci]"
+          else
+            echo "File not in repo - adding new..."
+            git add cypress/fixtures/full_translation.json
+            git commit -m "Add initial translation JSON for ${{ steps.language.outputs.language_code }} [skip ci]"
+          fi
+          
+          # 4. Push changes
+          git pull --rebase origin master # Ensure we're up to date
+          git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
 
       - name: Process language code
         id: language
