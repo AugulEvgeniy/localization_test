@@ -26,29 +26,36 @@ jobs:
           # 1. Generate JSON
           echo "Running conversion script..."
           node cypress/fixtures/convertExcel.js
-      
+          
           # 2. Verify output
           echo "Generated files:"
           ls -la cypress/fixtures/
-      
+          
           if [ ! -f "cypress/fixtures/translations.json" ]; then
-            echo "::error::Failed to generate full_translation.json"
+            echo "::error::Failed to generate translations.json"
             exit 1
           fi
-      
-          # 3. Commit changes (only if file content actually changed)
+          
+          # 3. Configure Git
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-      
-          git add -u cypress/fixtures/translations.json   # stage if already tracked
-          git add cypress/fixtures/translations.json      # stage if new/untracked
-      
-          # Check if there are staged changes before committing
+          
+          # 4. Check if file exists in repository
+          if git ls-files --error-unmatch cypress/fixtures/translations.json >/dev/null 2>&1; then
+            echo "File exists in repo - checking for changes..."
+            git add -u cypress/fixtures/translations.json
+          else
+            echo "File not in repo - adding new file..."
+            git add cypress/fixtures/translations.json
+          fi
+          
+          # 5. Commit only if changes exist
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
             git commit -m "Auto-generated translation JSON [skip ci]"
-            git push
+            git pull --rebase origin master  # Prevent push conflicts
+            git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
           fi
 
       - name: Process language code
