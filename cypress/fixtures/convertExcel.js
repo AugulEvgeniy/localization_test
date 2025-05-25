@@ -2,7 +2,7 @@ const XLSX = require('xlsx');
 const fs = require('fs');
 
 // Load the workbook
-const workbook = XLSX.readFile('./GoldenGoals_Translations1.xlsx'); // Insert the needed file name 
+const workbook = XLSX.readFile('./GoldenGoals_Translations.xlsx'); // Insert the needed file name 
 const sheetName = workbook.SheetNames[0];
 const sheet = workbook.Sheets[sheetName];
 
