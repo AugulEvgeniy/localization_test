@@ -22,16 +22,10 @@ jobs:
       - name: Generate translation JSON
         run: |
           echo "Current directory: $(pwd)"
-          echo "Files in fixtures/:"
-          ls -la fixtures/
+          echo "Files in test/cypress/fixtures/:"
+          ls -la test/cypress/fixtures/
           
-          # Verify file exists
-          if [ ! -f "fixtures/convertExcel.js" ]; then
-            echo "::error::convertExcel.js not found!"
-            exit 1
-          fi
-          
-          node fixtures/convertExcel.js
+          node test/cypress/fixtures/convertExcel.js
 
       - name: Commit translation JSON
         run: |
