@@ -14,7 +14,7 @@ describe('League translations', () => {
       const game = win.game;
       const scene = game?.scene?.scenes?.[2];
       expect(scene?.loadingPanel?.list?.[1]?.list?.[0]).to.exist; // England button
-    });
+    })
 
 
     cy.fixture('translations.json').then((translations) => {

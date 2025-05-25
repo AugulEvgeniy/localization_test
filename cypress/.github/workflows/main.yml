@@ -3,8 +3,8 @@ on:
   push:
     branches: [ master ]
     paths:
-      - 'cypress/fixtures/**' # Trigger when translation files change
-      - 'e2e/translation*cy.js'
+      - 'cypress/fixtures/**'
+      - 'e2e/translation*.cy.js'  # Fixed pattern
 
 jobs:
   translation-process:
@@ -23,13 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 1: Convert Excel to JSON
       - name: Generate translation JSON
         run: |
           node fixtures/convertExcel.js
-          ls -la fixtures/ # Verify file creation
+          ls -la fixtures/
 
-      # Step 2: Commit and push the generated JSON
       - name: Commit translation JSON
         run: |
           git config --global user.name "GitHub Actions"
@@ -38,44 +36,36 @@ jobs:
           git commit -m "Auto-generated translation JSON"
           git push
 
-      # Step 3: Extract language code and rename test file
       - name: Process language code
         id: language
         run: |
-          # Extract language code from commit message (e.g., "[pt-br]")
-          LANGUAGE_CODE=$(git log -1 --pretty=format:"%s" | grep -oP '\[\K[^]]*' | head -1)
-          echo "Extracted language: $LANGUAGE_CODE"
-          
-          # Rename test file
-          if [ -f "e2e/translation[i].cyjs" ]; then
-            mv "e2e/translation[i].cyjs" "e2e/translation[$LANGUAGE_CODE].cy.js"
-            echo "Renamed to translation[$LANGUAGE_CODE].cy.js"
+          LANGUAGE_CODE=$(git log -1 --pretty=format:"%s" | grep -oP '\[([a-z]{2}(-[a-z]{2})?)\]' | head -1 | tr -d '[]')
+          if [ -z "$LANGUAGE_CODE" ]; then
+            echo "::error::Commit message must contain [lang-code] (e.g., [pt-br])"
+            exit 1
           fi
-          
-          # Set output for later steps
           echo "language_code=$LANGUAGE_CODE" >> $GITHUB_OUTPUT
 
-      # Step 4: Run Cypress test
+          TEST_FILE=$(find e2e -name 'translation*.cyjs' | head -1)
+          if [ -f "$TEST_FILE" ]; then
+            mv "$TEST_FILE" "e2e/translation[$LANGUAGE_CODE].cy.js"
+          fi
+
       - name: Run translation tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           headless: true
           spec: "e2e/translation[${{ steps.language.outputs.language_code }}].cy.js"
-          config-file: cypress.config.js
 
-      # Step 5: Generate HTML report
       - name: Generate HTML report
         if: always()
         run: |
           npx mochawesome-merge cypress/reports/mocha/*.json > merged-report.json
-          npx marge merged-report.json \
-            --reportDir cypress/reports/html \
-            --reportTitle "Translation Test Report (${{ steps.language.outputs.language_code }})"
+          npx marge merged-report.json --reportDir cypress/reports/html
 
       - name: Upload HTML report
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: translation-test-report
+          name: translation-report-${{ steps.language.outputs.language_code }}
           path: cypress/reports/html/merged-report.html
