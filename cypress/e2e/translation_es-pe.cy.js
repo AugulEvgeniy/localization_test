@@ -12,7 +12,7 @@ describe('League translations', () => {
     
     cy.window().should((win) => {
       const game = win.game;
-      const scene = game?.scene?.scenes?.[2];
+      const scene = game?.scene?.scenes?.[2]
       expect(scene?.loadingPanel?.list?.[1]?.list?.[0]).to.exist; // England button
     })
 
