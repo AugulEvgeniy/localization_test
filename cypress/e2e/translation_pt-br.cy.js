@@ -29,6 +29,7 @@ describe('League translations', () => {
           throw new Error(`Translation not found for ${leagueKey} in ${languageCode}`);
         }
 
+        
         const expectedRaw = leagueTranslation[languageCode];
   
         
