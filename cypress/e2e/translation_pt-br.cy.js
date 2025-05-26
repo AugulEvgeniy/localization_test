@@ -55,6 +55,10 @@ describe('League translations', () => {
           cy.log(`🌐 [${leagueKey}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
+
+          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
+          cy.task(`Actual:`, actualCleaned);
+          cy.task(`Matched Words:`, matchedWords);
           
           console.log(`[${leagueKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
