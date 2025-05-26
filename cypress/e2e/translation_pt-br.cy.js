@@ -358,8 +358,8 @@ describe('Footer translations', () => {
           cy.task('logTranslation', {
             type: 'comparison',
             key: Key,
-            actual: actualCleaned,
-            expected: expectedCleaned
+            actual: actualButtonCleaned,
+            expected: expectedButtonCleaned
           });
           
           console.log(`[${Key}] Expected:`, expectedButtonCleaned);
@@ -1087,7 +1087,7 @@ describe('Middle panel translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: Key,
+            key: key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -1183,7 +1183,7 @@ describe('Banner translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: Key,
+            key: key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -1395,7 +1395,7 @@ describe('Check Help page [IT] translation', () => {
             
             const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
             
-            cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+            cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
             cy.log(`🎮 Actual: ${actualCleaned}`);
             cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
             
@@ -1406,13 +1406,13 @@ describe('Check Help page [IT] translation', () => {
               expected: expectedCleaned
             });
 
-            console.log(`[${progressKey}] Expected:`, expectedCleaned);
+            console.log(`[${Key}] Expected:`, expectedCleaned);
             console.log(`Actual:`, actualCleaned);
             console.log(`Matched Words:`, matchedWords);
     
             if (matchedWords.length < 2) {
-                console.log(`All translations for ${progressKey}:`, progressTranslation);
-                cy.log(`All translations for ${progressKey}:`, progressTranslation);
+                console.log(`All translations for ${Key}:`, progressTranslation);
+                cy.log(`All translations for ${Key}:`, progressTranslation);
             }
             
             expect(matchedWords.length).to.be.gte(2);
@@ -1682,7 +1682,7 @@ describe('Check Help page [TR] translation', () => {
             
             const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
             
-            cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+            cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
             cy.log(`🎮 Actual: ${actualCleaned}`);
             cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
@@ -1693,13 +1693,13 @@ describe('Check Help page [TR] translation', () => {
               expected: expectedCleaned
             });
 
-            console.log(`[${progressKey}] Expected:`, expectedCleaned);
+            console.log(`[${Key}] Expected:`, expectedCleaned);
             console.log(`Actual:`, actualCleaned);
             console.log(`Matched Words:`, matchedWords);
     
             if (matchedWords.length < 2) {
-                console.log(`All translations for ${progressKey}:`, progressTranslation);
-                cy.log(`All translations for ${progressKey}:`, progressTranslation);
+                console.log(`All translations for ${Key}:`, progressTranslation);
+                cy.log(`All translations for ${Key}:`, progressTranslation);
             }
             
             expect(matchedWords.length).to.be.gte(2);
