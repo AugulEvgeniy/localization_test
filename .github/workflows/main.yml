@@ -100,7 +100,12 @@ jobs:
           # 2. Set new filename with extracted language code
           NEW_FILE="cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
           echo "Renaming $OLD_FILE to $NEW_FILE"
-            
+          
+          if [ "$OLD_FILE" == "$NEW_FILE" ]; then
+            echo "Skipping rename: New filename is the same as the old one."
+            exit 0
+          fi
+
           # 3. Perform the rename
           mv -f "$OLD_FILE" "$NEW_FILE"
             
