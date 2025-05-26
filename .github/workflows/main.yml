@@ -127,7 +127,10 @@ jobs:
           browser: chrome
           # headless: true
           spec: "cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
-
+        env:
+          # Only show test output (suppress Cypress startup logs)
+          CI: "true"
+          NO_COLOR: "1"
 
       - name: Generate HTML report
         if: always()
