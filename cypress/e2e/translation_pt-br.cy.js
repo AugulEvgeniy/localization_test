@@ -57,16 +57,16 @@ describe('League translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
+          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
+          cy.task(`Actual:`, actualCleaned);
+          cy.task(`Matched Words:`, matchedWords);
+          
           cy.task('logTranslation', {
             type: 'comparison',
             key: leagueKey,
-            actual: actualText,
-            expected: expectedText
+            actual: actualCleaned,
+            expected: expectedCleaned
           });
-          
-          console.log(`[${leagueKey}] Expected:`, expectedCleaned);
-          console.log(`Actual:`, actualCleaned);
-          console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
             console.log(`All translations for ${leagueKey}:`, leagueTranslation);
