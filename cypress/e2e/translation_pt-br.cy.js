@@ -140,9 +140,12 @@ describe('Progress bar translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -215,9 +218,12 @@ describe('Stake translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -282,9 +288,12 @@ describe('Footer translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -346,9 +355,12 @@ describe('Footer translations', () => {
           cy.log(`🎮 Actual: ${actualButtonCleaned}`);
           cy.log(`✅ Matched ${matchedButtonWords.length} of ${expectedButtonWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${Key}] Expected:`, expectedButtonCleaned);
           console.log(`Actual:`, actualButtonCleaned);
@@ -413,9 +425,12 @@ describe('Top panel translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -476,9 +491,12 @@ describe('Top panel translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -541,9 +559,12 @@ describe('Help page: total goals translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -615,9 +636,12 @@ describe('Help page: total goals translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -687,9 +711,12 @@ describe('Help page translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
           
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
 
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -939,9 +966,12 @@ describe('History page translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -1052,9 +1082,12 @@ describe('Middle panel translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           if (matchedWords.length < 2) {
             cy.log(`All translations for ${key}:`, translation);
@@ -1145,9 +1178,12 @@ describe('Banner translations', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           if (matchedWords.length < 2) {
             cy.log(`All translations for ${key}:`, translation);
@@ -1296,9 +1332,12 @@ describe('Check Help page [IT] translation', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -1577,9 +1616,12 @@ describe('Check Help page [TR] translation', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -1854,9 +1896,12 @@ describe('Check Help page [ES] translation', () => {
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-          cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-          cy.task(`Actual:`, actualCleaned);
-          cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
           
           console.log(`[${progressKey}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
@@ -1915,9 +1960,12 @@ describe('Check Help page [ES] translation', () => {
             cy.log(`🎮 Actual: ${actualCleaned}`);
             cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-            cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-            cy.task(`Actual:`, actualCleaned);
-            cy.task(`Matched Words:`, matchedWords);
+          cy.task('logTranslation', {
+            type: 'comparison',
+            key: leagueKey,
+            actual: actualCleaned,
+            expected: expectedCleaned
+          });
             
             console.log(`[${progressKey}] Expected:`, expectedCleaned);
             console.log(`Actual:`, actualCleaned);
