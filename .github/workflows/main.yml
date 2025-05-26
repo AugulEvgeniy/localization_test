@@ -1,11 +1,7 @@
 name: Translation Pipeline
 
 on:
-  push:
-    branches: [ main, master ]
-    paths:
-      - 'cypress/fixtures/**'
-      - 'cypress/e2e/translation_*.cy.js'
+  push
 
 
 jobs:
