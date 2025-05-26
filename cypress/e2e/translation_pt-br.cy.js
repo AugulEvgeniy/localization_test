@@ -1,5 +1,5 @@
 let specFilename = Cypress.spec.name;
-
+let RTP = 85
 // Match language code from format like 'translation-pt-br.cy.js'
 const languageCode = specFilename.match(/translation_(.*)\.cy\.js/)[1]
 
@@ -8,7 +8,7 @@ const currentLanguage = languageCode; // e.g., "pt-br"
 
 describe('League translations', () => {
   it('should verify league button translations', () => {
-  cy.visit(`http://highlight.spinberry.com/applepen/SOTD_GoldenGoals/index.html?go=dev&serverAddress=https://riw-dev.olsworth.com&productId=goldenmulti85-dev&token=123456&currency=GBP&lang=${currentLanguage}&testConfig=local&forceDevice=tablet&hideCurrency=false`);
+  cy.visit(`http://highlight.spinberry.com/applepen/SOTD_GoldenGoals/index.html?go=dev&serverAddress=https://riw-dev.olsworth.com&productId=goldenmulti${RTP}-dev&token=123456&currency=GBP&lang=${currentLanguage}&testConfig=local&forceDevice=tablet&hideCurrency=false`);
     
     cy.window().should((win) => {
       const game = win.game;
@@ -905,6 +905,15 @@ describe('Help page translations', () => {
       waitForTranslation('HELP', 'GENERAL_TITLE', 13, 11);
       verify('GENERAL_TITLE', 13, 11);
       verify('GENERAL_DESCRIPTION_TXT1', 13, 12);
+
+      cy.window().should((win) => {
+        expect(win.game.scene.scenes[1].gameContainer.helpPage.list[12].text).to.include(parseFloat(RTP));
+      })
+      cy.log('RTP:', RTP)
+      cy.task('logRTP', RTP)
+
+
+
     });
   });
 });
@@ -1529,6 +1538,12 @@ describe('Check Help page [IT] translation', () => {
       waitForTranslation('HELP', 'GENERAL_TITLE', 13, 11);
       verify('GENERAL_TITLE', 13, 11);
       verify('GENERAL_DESCRIPTION_TXT1', 13, 12);
+
+      cy.window().should((win) => {
+        expect(win.game.scene.scenes[1].gameContainer.helpPage.list[12].text).to.include(parseFloat(RTP));
+      })
+      cy.log('RTP:', RTP)
+      cy.task('logRTP', RTP)
     });
   });
 });
@@ -1816,6 +1831,12 @@ describe('Check Help page [TR] translation', () => {
       waitForTranslation('HELP', 'GENERAL_TITLE', 13, 11);
       verify('GENERAL_TITLE', 13, 11);
       verify('GENERAL_DESCRIPTION_TXT1', 13, 12);
+
+      cy.window().should((win) => {
+        expect(win.game.scene.scenes[1].gameContainer.helpPage.list[12].text).to.include(parseFloat(RTP));
+      })
+      cy.log('RTP:', RTP)
+      cy.task('logRTP', RTP)
     });
   });
 });
@@ -2097,6 +2118,12 @@ describe('Check Help page [ES] translation', () => {
       waitForTranslation('HELP', 'GENERAL_TITLE', 13, 11);
       verify('GENERAL_TITLE', 13, 11);
       verify('GENERAL_DESCRIPTION_TXT1', 13, 12);
+
+      cy.window().should((win) => {
+        expect(win.game.scene.scenes[1].gameContainer.helpPage.list[12].text).to.include(parseFloat(RTP));
+      })
+      cy.log('RTP:', RTP)
+      cy.task('logRTP', RTP)
     });
   });
 });

@@ -15,7 +15,11 @@ module.exports = defineConfig({
           console.log('Actual:', actual);
           console.log('Expected:', expected);
           return null;
-        }
+        },
+        logRTP(value) {
+        console.log('RTP Value:', value);
+        return null;
+  }
       });
     },
     reporter: 'mochawesome',
