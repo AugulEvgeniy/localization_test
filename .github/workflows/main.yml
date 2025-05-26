@@ -127,11 +127,11 @@ jobs:
           browser: chrome
           # headless: true
           spec: "cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
+          config: "video=false"  # Disable video to reduce artifacts
         env:
-          # Enable debug logging
-          DEBUG: "cypress:*"
-          # Force color output in CI
-          FORCE_COLOR: "1"
+          # Only show test output (suppress Cypress startup logs)
+          CI: "true"
+          NO_COLOR: "1"
 
       - name: Generate HTML report
         if: always()
