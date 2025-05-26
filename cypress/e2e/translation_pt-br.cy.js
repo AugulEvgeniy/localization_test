@@ -1965,7 +1965,7 @@ describe('Check Help page [ES] translation', () => {
             
             const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
             
-            cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+            cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
             cy.log(`🎮 Actual: ${actualCleaned}`);
             cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
@@ -1976,13 +1976,13 @@ describe('Check Help page [ES] translation', () => {
             expected: expectedCleaned
           });
             
-            console.log(`[${progressKey}] Expected:`, expectedCleaned);
+            console.log(`[${Key}] Expected:`, expectedCleaned);
             console.log(`Actual:`, actualCleaned);
             console.log(`Matched Words:`, matchedWords);
     
             if (matchedWords.length < 2) {
-                console.log(`All translations for ${progressKey}:`, progressTranslation);
-                cy.log(`All translations for ${progressKey}:`, progressTranslation);
+                console.log(`All translations for ${Key}:`, progressTranslation);
+                cy.log(`All translations for ${Key}:`, progressTranslation);
             }
             
             expect(matchedWords.length).to.be.gte(2);
@@ -2034,8 +2034,6 @@ describe('Check Help page [ES] translation', () => {
       
       verify('HOW_TO_PLAY_TITLE', 13, 11);
       verify('HOW_TO_PLAY_DESCRIPTION_TXT1', 13, 12);
-
-
 
       cy.window().then((win) => {
         const game = win.game;
