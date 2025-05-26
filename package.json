@@ -8,7 +8,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^14.3.0"
+    "cypress": "^14.4.0"
   },
   "dependencies": {
     "mochawesome": "^7.1.3",
