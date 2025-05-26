@@ -127,11 +127,6 @@ jobs:
           browser: chrome
           headless: true
           spec: "cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
-        env:
-        # Enable debug logging
-          DEBUG: "cypress:*"
-          # Force color output in CI
-          FORCE_COLOR: "1"
 
       - name: Generate HTML report
         if: always()
