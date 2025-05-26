@@ -30,6 +30,7 @@ describe('League translations', () => {
         }
 
         const expectedRaw = leagueTranslation[languageCode];
+  
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
