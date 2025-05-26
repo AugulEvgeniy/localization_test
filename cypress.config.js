@@ -6,7 +6,14 @@ module.exports = defineConfig({
       // implement node event listeners here
             on('task', {
         log(message) {
-          console.log('[CY-TASK]', message);
+          console.log(message); // Handles all log messages
+          return null;
+        },
+        // Add this new task to handle key-value pairs
+        logTranslation({ key, actual, expected }) {
+          console.log(`[TRANSLATION] ${key}`);
+          console.log('Actual:', actual);
+          console.log('Expected:', expected);
           return null;
         }
       });
