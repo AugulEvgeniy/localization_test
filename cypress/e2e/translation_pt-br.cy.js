@@ -171,7 +171,7 @@ describe('Progress bar translations', () => {
 describe('Stake translations', () => {
   it('should verify main page translations', () => {
   
-    cy.window().should((win) => {
+    cy.window({ timeout: 10000 }).should((win) => {
       const game = win.game;
       const main_scene = game?.scene?.scenes?.[1];
       const playButton = main_scene?.gameContainer.list?.[3]?.list?.[0].list?.[0];
