@@ -142,7 +142,7 @@ describe('Progress bar translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: progressKey,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -220,7 +220,7 @@ describe('Stake translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -290,7 +290,7 @@ describe('Footer translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -357,7 +357,7 @@ describe('Footer translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -427,7 +427,7 @@ describe('Top panel translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -493,7 +493,7 @@ describe('Top panel translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -523,14 +523,14 @@ describe('Help page: total goals translations', () => {
 
     cy.fixture('translations.json').then((translations) => {
       // Function to verify progress bar translation
-      const verify = (progressKey, panelIndex, listIndex) => {
+      const verify = (Key, panelIndex, listIndex) => {
         const progressTranslation = translations.find(item => 
           item["Section key"] === "HELP" && 
-          item.Key === progressKey
+          item.Key === Key
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+          throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
 
         const expectedRaw = progressTranslation[languageCode];
@@ -555,24 +555,24 @@ describe('Help page: total goals translations', () => {
           const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
           
           // ✅ Log expected & actual
-          cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+          cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
           
-          console.log(`[${progressKey}] Expected:`, expectedCleaned);
+          console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
           console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
-            console.log(`All translations for ${progressKey}:`, progressTranslation);
-            cy.log(`All translations for ${progressKey}:`, progressTranslation);
+            console.log(`All translations for ${Key}:`, progressTranslation);
+            cy.log(`All translations for ${Key}:`, progressTranslation);
           }
           
           expect(matchedWords.length).to.be.gte(1); // or adjust based on your threshold
@@ -600,14 +600,14 @@ describe('Help page: total goals translations', () => {
 
     cy.fixture('translations.json').then((translations) => {
       // Function to verify progress bar translation
-      const verify = (progressKey, panelIndex, listIndex) => {
+      const verify = (Key, panelIndex, listIndex) => {
         const progressTranslation = translations.find(item => 
           item["Section key"] === "HELP" && 
-          item.Key === progressKey
+          item.Key === Key
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+          throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
 
         const expectedRaw = progressTranslation[languageCode];
@@ -632,24 +632,24 @@ describe('Help page: total goals translations', () => {
           const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
           
           // ✅ Log expected & actual
-          cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+          cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
           
-          console.log(`[${progressKey}] Expected:`, expectedCleaned);
+          console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
           console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
-            console.log(`All translations for ${progressKey}:`, progressTranslation);
-            cy.log(`All translations for ${progressKey}:`, progressTranslation);
+            console.log(`All translations for ${Key}:`, progressTranslation);
+            cy.log(`All translations for ${Key}:`, progressTranslation);
           }
           
           expect(matchedWords.length).to.be.gte(1); // or adjust based on your threshold
@@ -675,14 +675,14 @@ describe('Help page translations', () => {
 
     cy.fixture('translations.json').then((translations) => {
       // Function to verify progress bar translation
-      const verify = (progressKey, panelIndex, listIndex) => {
+      const verify = (Key, panelIndex, listIndex) => {
         const progressTranslation = translations.find(item => 
           item["Section key"] === "HELP" && 
-          item.Key === progressKey
+          item.Key === Key
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+          throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
 
         const expectedRaw = progressTranslation[languageCode];
@@ -707,28 +707,28 @@ describe('Help page translations', () => {
           const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
           
           // ✅ Log expected & actual
-          cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+          cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
           
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
 
-          console.log(`[${progressKey}] Expected:`, expectedCleaned);
+          console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
           console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
-            console.log(`All translations for ${progressKey}:`, progressTranslation);
-            cy.log(`All translations for ${progressKey}:`, progressTranslation);
+            console.log(`All translations for ${Key}:`, progressTranslation);
+            cy.log(`All translations for ${Key}:`, progressTranslation);
           }
           
           // Determine threshold based on key type
-          const isTitle = progressKey.includes('TITLE');
+          const isTitle = Key.includes('TITLE');
           const minThreshold = isTitle ? 1 : 6; // 1 for titles, 6 for descriptions
           
           expect(matchedWords.length).to.be.gte(minThreshold);
@@ -736,14 +736,14 @@ describe('Help page translations', () => {
       };
 
       // Function to verify text in helpPageContainer
-      const verifyHelpPageContainer = (sectionKey, progressKey, panelIndex, listIndex, nestedListIndex = null) => {
+      const verifyHelpPageContainer = (sectionKey, Key, panelIndex, listIndex, nestedListIndex = null) => {
         const progressTranslation = translations.find(item => 
             item["Section key"] === sectionKey && 
-            item.Key === progressKey
+            item.Key === Key
         );
     
         if (!progressTranslation) {
-            throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+            throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
     
         const expectedRaw = progressTranslation[languageCode];
@@ -771,21 +771,24 @@ describe('Help page translations', () => {
             
             const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
             
-            cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+            cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
             cy.log(`🎮 Actual: ${actualCleaned}`);
             cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-            cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-            cy.task(`Actual:`, actualCleaned);
-            cy.task(`Matched Words:`, matchedWords);
+            cy.task('logTranslation', {
+              type: 'comparison',
+              key: Key,
+              actual: actualCleaned,
+              expected: expectedCleaned
+            });
             
-            console.log(`[${progressKey}] Expected:`, expectedCleaned);
+            console.log(`[${Key}] Expected:`, expectedCleaned);
             console.log(`Actual:`, actualCleaned);
             console.log(`Matched Words:`, matchedWords);
     
             if (matchedWords.length < 2) {
-                console.log(`All translations for ${progressKey}:`, progressTranslation);
-                cy.log(`All translations for ${progressKey}:`, progressTranslation);
+                console.log(`All translations for ${Key}:`, progressTranslation);
+                cy.log(`All translations for ${Key}:`, progressTranslation);
             }
             
             expect(matchedWords.length).to.be.gte(2);
@@ -930,14 +933,14 @@ describe('History page translations', () => {
 
     cy.fixture('translations.json').then((translations) => {
       // Function to verify progress bar translation
-      const verify = (progressKey, panelIndex, listIndex) => {
+      const verify = (Key, panelIndex, listIndex) => {
         const progressTranslation = translations.find(item => 
           item["Section key"] === "HISTORY" && 
-          item.Key === progressKey
+          item.Key === Key
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+          throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
 
         const expectedRaw = progressTranslation[languageCode];
@@ -962,29 +965,29 @@ describe('History page translations', () => {
           const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
           
           // ✅ Log expected & actual
-          cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+          cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
           
-          console.log(`[${progressKey}] Expected:`, expectedCleaned);
+          console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
           console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
-            console.log(`All translations for ${progressKey}:`, progressTranslation);
-            cy.log(`All translations for ${progressKey}:`, progressTranslation);
+            console.log(`All translations for ${Key}:`, progressTranslation);
+            cy.log(`All translations for ${Key}:`, progressTranslation);
           }
           
           // Determine threshold based on key type
-          const isStake = progressKey.includes('STAKE');
-          const isGoalOrMiss = progressKey === 'GOAL' || progressKey === 'MISS';
+          const isStake = Key.includes('STAKE');
+          const isGoalOrMiss = Key === 'GOAL' || Key === 'MISS';
           const minThreshold = isStake || isGoalOrMiss ? 1 : 2; // 1 for stake/goal/miss, 2 for everything else
           
           expect(matchedWords.length).to.be.gte(minThreshold);
@@ -1084,7 +1087,7 @@ describe('Middle panel translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -1180,7 +1183,7 @@ describe('Banner translations', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
@@ -1296,14 +1299,14 @@ describe('Check Help page [IT] translation', () => {
 
     cy.fixture('translations.json').then((translations) => {
       // Function to verify progress bar translation
-      const verify = (progressKey, panelIndex, listIndex) => {
+      const verify = (Key, panelIndex, listIndex) => {
         const progressTranslation = translations.find(item => 
           item["Section key"] === "HELP" && 
-          item.Key === progressKey
+          item.Key === Key
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+          throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
 
         const expectedRaw = progressTranslation[languageCode];
@@ -1328,28 +1331,28 @@ describe('Check Help page [IT] translation', () => {
           const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
           
           // ✅ Log expected & actual
-          cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+          cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
           
-          console.log(`[${progressKey}] Expected:`, expectedCleaned);
+          console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
           console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
-            console.log(`All translations for ${progressKey}:`, progressTranslation);
-            cy.log(`All translations for ${progressKey}:`, progressTranslation);
+            console.log(`All translations for ${Key}:`, progressTranslation);
+            cy.log(`All translations for ${Key}:`, progressTranslation);
           }
           
           // Determine threshold based on key type
-          const isTitle = progressKey.includes('TITLE');
+          const isTitle = Key.includes('TITLE');
           const minThreshold = isTitle ? 1 : 6; // 1 for titles, 6 for descriptions
           
           expect(matchedWords.length).to.be.gte(minThreshold);
@@ -1357,14 +1360,14 @@ describe('Check Help page [IT] translation', () => {
       };
 
       // Function to verify text in helpPageContainer
-      const verifyHelpPageContainer = (sectionKey, progressKey, panelIndex, listIndex, nestedListIndex = null) => {
+      const verifyHelpPageContainer = (sectionKey, Key, panelIndex, listIndex, nestedListIndex = null) => {
         const progressTranslation = translations.find(item => 
             item["Section key"] === sectionKey && 
-            item.Key === progressKey
+            item.Key === Key
         );
     
         if (!progressTranslation) {
-            throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+            throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
     
         const expectedRaw = progressTranslation[languageCode];
@@ -1396,9 +1399,12 @@ describe('Check Help page [IT] translation', () => {
             cy.log(`🎮 Actual: ${actualCleaned}`);
             cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
             
-            cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-            cy.task(`Actual:`, actualCleaned);
-            cy.task(`Matched Words:`, matchedWords);
+            cy.task('logTranslation', {
+              type: 'comparison',
+              key: Key,
+              actual: actualCleaned,
+              expected: expectedCleaned
+            });
 
             console.log(`[${progressKey}] Expected:`, expectedCleaned);
             console.log(`Actual:`, actualCleaned);
@@ -1580,14 +1586,14 @@ describe('Check Help page [TR] translation', () => {
 
     cy.fixture('translations.json').then((translations) => {
       // Function to verify progress bar translation
-      const verify = (progressKey, panelIndex, listIndex) => {
+      const verify = (Key, panelIndex, listIndex) => {
         const progressTranslation = translations.find(item => 
           item["Section key"] === "HELP" && 
-          item.Key === progressKey
+          item.Key === Key
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+          throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
 
         const expectedRaw = progressTranslation[languageCode];
@@ -1612,28 +1618,28 @@ describe('Check Help page [TR] translation', () => {
           const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
           
           // ✅ Log expected & actual
-          cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+          cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
           
-          console.log(`[${progressKey}] Expected:`, expectedCleaned);
+          console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
           console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
-            console.log(`All translations for ${progressKey}:`, progressTranslation);
-            cy.log(`All translations for ${progressKey}:`, progressTranslation);
+            console.log(`All translations for ${Key}:`, progressTranslation);
+            cy.log(`All translations for ${Key}:`, progressTranslation);
           }
           
           // Determine threshold based on key type
-          const isTitle = progressKey.includes('TITLE');
+          const isTitle = Key.includes('TITLE');
           const minThreshold = isTitle ? 1 : 6; // 1 for titles, 6 for descriptions
           
           expect(matchedWords.length).to.be.gte(minThreshold);
@@ -1641,14 +1647,14 @@ describe('Check Help page [TR] translation', () => {
       };
 
       // Function to verify text in helpPageContainer
-      const verifyHelpPageContainer = (sectionKey, progressKey, panelIndex, listIndex, nestedListIndex = null) => {
+      const verifyHelpPageContainer = (sectionKey, Key, panelIndex, listIndex, nestedListIndex = null) => {
         const progressTranslation = translations.find(item => 
             item["Section key"] === sectionKey && 
-            item.Key === progressKey
+            item.Key === Key
         );
     
         if (!progressTranslation) {
-            throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+            throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
     
         const expectedRaw = progressTranslation[languageCode];
@@ -1680,10 +1686,13 @@ describe('Check Help page [TR] translation', () => {
             cy.log(`🎮 Actual: ${actualCleaned}`);
             cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
-            cy.task('log', `[${leagueKey}] Expected: ${expectedCleaned}`);
-            cy.task(`Actual:`, actualCleaned);
-            cy.task(`Matched Words:`, matchedWords);
-            
+            cy.task('logTranslation', {
+              type: 'comparison',
+              key: Key,
+              actual: actualCleaned,
+              expected: expectedCleaned
+            });
+
             console.log(`[${progressKey}] Expected:`, expectedCleaned);
             console.log(`Actual:`, actualCleaned);
             console.log(`Matched Words:`, matchedWords);
@@ -1860,14 +1869,14 @@ describe('Check Help page [ES] translation', () => {
 
     cy.fixture('translations.json').then((translations) => {
       // Function to verify progress bar translation
-      const verify = (progressKey, panelIndex, listIndex) => {
+      const verify = (Key, panelIndex, listIndex) => {
         const progressTranslation = translations.find(item => 
           item["Section key"] === "HELP" && 
-          item.Key === progressKey
+          item.Key === Key
         );
 
         if (!progressTranslation) {
-          throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+          throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
 
         const expectedRaw = progressTranslation[languageCode];
@@ -1892,28 +1901,28 @@ describe('Check Help page [ES] translation', () => {
           const matchedWords = expectedWords.filter(word => actualCleaned.includes(word));
           
           // ✅ Log expected & actual
-          cy.log(`🌐 [${progressKey}] Expected: ${expectedCleaned}`);
+          cy.log(`🌐 [${Key}] Expected: ${expectedCleaned}`);
           cy.log(`🎮 Actual: ${actualCleaned}`);
           cy.log(`✅ Matched ${matchedWords.length} of ${expectedWords.length} words`);
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
           
-          console.log(`[${progressKey}] Expected:`, expectedCleaned);
+          console.log(`[${Key}] Expected:`, expectedCleaned);
           console.log(`Actual:`, actualCleaned);
           console.log(`Matched Words:`, matchedWords);
 
           if (matchedWords.length < 2) { // Your threshold
-            console.log(`All translations for ${progressKey}:`, progressTranslation);
-            cy.log(`All translations for ${progressKey}:`, progressTranslation);
+            console.log(`All translations for ${Key}:`, progressTranslation);
+            cy.log(`All translations for ${Key}:`, progressTranslation);
           }
           
           // Determine threshold based on key type
-          const isTitle = progressKey.includes('TITLE');
+          const isTitle = Key.includes('TITLE');
           const minThreshold = isTitle ? 1 : 6; // 1 for titles, 6 for descriptions
           
           expect(matchedWords.length).to.be.gte(minThreshold);
@@ -1921,14 +1930,14 @@ describe('Check Help page [ES] translation', () => {
       };
 
       // Function to verify text in helpPageContainer
-      const verifyHelpPageContainer = (sectionKey, progressKey, panelIndex, listIndex, nestedListIndex = null) => {
+      const verifyHelpPageContainer = (sectionKey, Key, panelIndex, listIndex, nestedListIndex = null) => {
         const progressTranslation = translations.find(item => 
             item["Section key"] === sectionKey && 
-            item.Key === progressKey
+            item.Key === Key
         );
     
         if (!progressTranslation) {
-            throw new Error(`Translation not found for ${progressKey} in ${languageCode}`);
+            throw new Error(`Translation not found for ${Key} in ${languageCode}`);
         }
     
         const expectedRaw = progressTranslation[languageCode];
@@ -1962,7 +1971,7 @@ describe('Check Help page [ES] translation', () => {
 
           cy.task('logTranslation', {
             type: 'comparison',
-            key: leagueKey,
+            key: Key,
             actual: actualCleaned,
             expected: expectedCleaned
           });
