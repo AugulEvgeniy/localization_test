@@ -2,6 +2,10 @@ name: Translation Pipeline
 
 on:
   push
+    # branches: [ main, master ]
+    # paths:
+    #   - 'cypress/fixtures/**'
+    #   - 'cypress/e2e/translation_*.cy.js'
 
 
 jobs:
@@ -121,7 +125,13 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+          # headless: true
           spec: "cypress/e2e/translation_${{ steps.language.outputs.language_code }}.cy.js"
+        env:
+          # Enable debug logging
+          DEBUG: "cypress:*"
+          # Force color output in CI
+          FORCE_COLOR: "1"
 
       - name: Generate HTML report
         if: always()
