@@ -122,7 +122,7 @@ jobs:
           git push "https://$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
 
       - name: Run translation tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v6.0
         with:
           browser: chrome
           headless: true
