@@ -432,7 +432,7 @@ describe('Help page: total goals translations', () => {
           throw new Error(`Translation not found for ${progressKey} in ${currentLanguage}`);
         }
 
-        const expectedRaw = progressTranslation[currentLanguage];
+        const expectedRaw = progressTranslation[currentLanguage]
         
         // Clean up expected translation
         const expectedCleaned = expectedRaw
