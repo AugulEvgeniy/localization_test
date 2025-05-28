@@ -1210,22 +1210,12 @@ describe('Banner translations', () => {
       verify('BET_LESS', 'WIN_LOSE_BANNER', 13, 4, 2);
       verify('BET_AGAIN', 'WIN_LOSE_BANNER', 13, 5, 2);
       verify('BET_MORE', 'WIN_LOSE_BANNER', 13, 6, 2);
-
-      // Verify second set of translations (without listIndex_2)
-      cy.window().then((win) => {
-        const game = win.game;
-        const no_win_banner = game.scene.scenes[1].gameContainer.noWinBanner;
-    
-        if (no_win_banner && no_win_banner.visible == true) {
-          verify('NO_WIN', 'WIN_LOSE_BANNER', 13, 2);
-        } else {
-          verify('YOU_HAVE_WON', 'BANNERS', 10, 2);
-          verify('CONGRATULATIONS', 'BONUS', 10, 1);
-        }
+      verify('NO_WIN', 'WIN_LOSE_BANNER', 13, 2);
+      verify('YOU_HAVE_WON', 'BANNERS', 10, 2);
+      verify('CONGRATULATIONS', 'BONUS', 10, 1);
       });
     });
   });
-});
 
 
   describe('Change league', () => {
