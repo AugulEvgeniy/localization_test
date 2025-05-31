@@ -69,7 +69,7 @@ describe('League translations', () => {
             cy.log(`All translations for ${leagueKey}:`, leagueTranslation);
           }
           
-          expect(matchedWords.length).to.be.gte(2); // or adjust based on threshold
+          expect(matchedWords.length).to.be.gte(2); // adjust based on threshold
         });
       };
 
