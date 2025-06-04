@@ -64,12 +64,12 @@ describe('League translations', () => {
             expected: expectedCleaned
           });
 
-          if (matchedWords.length < 2) { // Your threshold
+          if (matchedWords.length < 2) { //  threshold
             console.log(`All translations for ${leagueKey}:`, leagueTranslation);
             cy.log(`All translations for ${leagueKey}:`, leagueTranslation);
           }
           
-          expect(matchedWords.length).to.be.gte(2); // or adjust based on your threshold
+          expect(matchedWords.length).to.be.gte(2); // adjust based on threshold
         });
       };
 
