@@ -2,7 +2,7 @@ const XLSX = require('xlsx');
 const fs = require('fs');
 
 // Load the workbook
-const workbook = XLSX.readFile('hg-sotd-turkey/game/tools/xlxsParser/Translations.xlsx'); // Insert the needed file name 
+const workbook = XLSX.readFile('game/tools/xlxsParser/Translations.xlsx'); // Insert the needed file name 
 const sheetName = workbook.SheetNames[0];
 const sheet = workbook.Sheets[sheetName];
 
