@@ -1,16 +1,13 @@
 name: Translation Pipeline
 
 on:
-  push
-    # branches: [ main, master ]
-    # paths:
-    #   - 'cypress/fixtures/**'
-    #   - 'cypress/e2e/translation_*.cy.js'
-
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [main, master]
 
 jobs:
   translation-process:
-    if: contains(github.event.head_commit.message, 'localization') || contains(github.event.head_commit.message, 'localisation')
+    if: contains(github.event.pull_request.title, 'localization') || contains(github.event.pull_request.title, 'localisation')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -68,16 +65,16 @@ jobs:
       - name: Process language code
         id: language
         run: |
-          TRIGGER_MSG="${{ github.event.head_commit.message }}"
-          echo "Analyzing triggering commit: $TRIGGER_MSG"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "Analyzing pull request title: $PR_TITLE"
             
           # Accept both [xx] and [xx-xx] formats
-          LANGUAGE_CODE=$(echo "$TRIGGER_MSG" | grep -oE '\[([a-z]{2})(-[a-z]{2})?\]' | head -1 | tr -d '[]')
+          LANGUAGE_CODE=$(echo "$PR_TITLE" | grep -oE '\[([a-z]{2})(-[a-z]{2})?\]' | head -1 | tr -d '[]')
             
           # Validate at least 2-letter code exists
           if [[ ! $LANGUAGE_CODE =~ ^[a-z]{2}(-[a-z]{2})?$ ]]; then
-            echo "::error::Commit message must contain [lang-code] (e.g., [tr] or [pt-br])"
-            echo "Triggering commit was: $TRIGGER_MSG"
+            echo "::error::Pull request title must contain [lang-code] (e.g., [tr] or [pt-br])"
+            echo "Pull request title was: $PR_TITLE"
             exit 1
           fi
             
